@@ -5,7 +5,7 @@
 #define int long long
 using namespace std;
 
-class SegTree {  // ????,??,????
+class SegTree {  
 public:
     SegTree(int n) {
         this->n = n;
@@ -16,39 +16,38 @@ public:
         updateTag.resize(n << 2);
         build(1, n, 1);
     }
-    void set(int i, long long v) {  // ????
+    void set(int i, long long v) { 
         update(i, i, v, 1, n, 1);
     }
-    void set(int l, int r, long long v) {  // ????
+    void set(int l, int r, long long v) { 
         if (l > r)
             return;
         update(l, r, v, 1, n, 1);
     }
-    void add(int i, long long v) {  // ???
+    void add(int i, long long v) {  
         add(i, i, v, 1, n, 1);
     }
-    void add(int l, int r, long long v) {  // ???
- 
+    void add(int l, int r, long long v) { 
         if (l > r)
             return;
         add(l, r, v, 1, n, 1);
     }
-    long long get(int i) {  // ????
+    long long get(int i) {  
         return queryMax(i, i, 1, n, 1);
     }
-    long long queryMax(int l, int r) {  // ???????
+    long long queryMax(int l, int r) {  
         if (l > r)
             return MIN;
         return queryMax(l, r, 1, n, 1);
     }
-    long long queryMin(int l, int r) {  // ???????
+    long long queryMin(int l, int r) {  
         if (l > r)
             return MAX;
         return queryMin(l, r, 1, n, 1);
     }
  
 private:
-    static const long long MAX = 0x3f3f3f3f3f3f3f3f;
+    static const long long MAX = INF;
     static const long long MIN = 0;
     int n;
     std::vector<long long> mx, mn, change, addTag;
